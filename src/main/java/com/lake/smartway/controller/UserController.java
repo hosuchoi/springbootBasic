@@ -33,6 +33,7 @@ public class UserController {
 
     @PostMapping("/register")
     public User registerUser(@RequestBody User user){
+        logger.debug("debug mode : controller : 사용자 등록");
         return userService.registerUser(user);
     }
 
