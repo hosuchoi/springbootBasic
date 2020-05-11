@@ -41,7 +41,7 @@ public class UserController {
     @PutMapping("/{userId}")
     public void modifyUSer(@PathVariable("userId") String userId,
                            @RequestBody User user){
-        logger.debug("debug mode : controller : 사용자 변경 lake");
+        logger.debug("debug mode : controller : 사용자 변경 lake!");
         userService.modifyUer(userId, user);
     }
 
