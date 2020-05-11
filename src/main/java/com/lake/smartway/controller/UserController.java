@@ -28,6 +28,7 @@ public class UserController {
 
     @GetMapping("/{userId}")
     public User getUserByuserId(@PathVariable("userId") Integer userId){
+        logger.debug("debug mode : controller : 특정 사용자 조회");
         return userService.getUserByuserId(userId);
     }
 
