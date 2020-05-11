@@ -1,0 +1,18 @@
+[33mcommit 842717c689f5bc8ff9f2e3911b7dc03806f2b9b9[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Merge: 002edca 4a04513
+Author: lake1310 <lake1310@naver.com>
+Date:   Mon May 11 22:28:05 2020 +0900
+
+    Merge branch 'master' of https://github.com/hosuchoi/study
+
+[33mcommit 002edca927eeb3debe4231176fdacdf961512cf2[m
+Author: lake1310 <lake1310@naver.com>
+Date:   Mon May 11 21:08:29 2020 +0900
+
+    first commit
+
+[33mcommit 4a04513a4603daac135db9909bedbfc581e31a94[m
+Author: hosuchoi <57225186+hosuchoi@users.noreply.github.com>
+Date:   Mon May 11 11:35:26 2020 +0900
+
+    Initial commit
