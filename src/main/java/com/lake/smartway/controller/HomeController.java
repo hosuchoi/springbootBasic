@@ -45,7 +45,7 @@ public class HomeController {
 
     @GetMapping("")
     public Map<String, String> home(){
-        logger.debug("HomeController Message~~~");
+        logger.debug("HomeController Message~~!");
         Map<String, String> res = this.userService.getMessage();
 
         return res;
