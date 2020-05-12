@@ -1,6 +1,8 @@
 package com.lake.smartway.account;
 
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/restController")
 public class AccountController {
+    
+    private final Logger logger = LoggerFactory.getLogger(AccountController.class);
 
     @GetMapping("/string")
     public String getUrl(){
@@ -41,6 +45,7 @@ public class AccountController {
 //    http://localhost:8080/tree/account
     @PostMapping("/account")
     public AccountDVO getAccount(@RequestBody AccountDVO req){
+        logger.debug("사용자 조회");
         AccountDVO accountDVO = new AccountDVO();
         accountDVO.setId(req.getId());
         accountDVO.setPwd(req.getPwd());
