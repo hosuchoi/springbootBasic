@@ -47,6 +47,7 @@ public class UserController {
 
     @DeleteMapping("/{userId}")
     public void removeUser(@PathVariable("userId") Integer userId){
+        logger.debug("debug mode : controller : 사용자 제거");
         userService.removeUser(userId);
     }
 
