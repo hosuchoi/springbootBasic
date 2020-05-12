@@ -45,7 +45,7 @@ public class HomeController {
 
     @GetMapping("")
     public Map<String, String> home(){
-        logger.debug("Check Invalid JWT Token");
+        logger.debug("Home Message");
         Map<String, String> res = this.userService.getMessage();
 
         return res;
