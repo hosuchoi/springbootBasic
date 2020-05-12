@@ -57,6 +57,7 @@ public class AccountController {
     @GetMapping("list")
     public @ResponseBody
     ResponseEntity<List<AccountDVO>> listAccount(){
+        logger.debug("사용자 목록 조회");
         AccountDVO accountDVOs = new AccountDVO();
         accountDVOs.setId("id");
         accountDVOs.setPwd("pwd");
