@@ -23,7 +23,9 @@ public class SmartwayApplication {
 //		new SpringApplicationBuilder()
 //				.sources(SmartwayApplication.class)
 //				.run(args);
-
-		System.out.println("test");
+		System.out.println("aaaa");
+		System.out.println("aaaa");
+		System.out.println("aaaa");
+		System.out.println("aaaa");
 	}
 }
