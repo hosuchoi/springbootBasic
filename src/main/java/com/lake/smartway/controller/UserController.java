@@ -22,7 +22,7 @@ public class UserController {
     @TokenRequired
     @GetMapping
     public List<User> getAll(){
-        logger.debug("debug mode : controller : 모든 사용자 조회");
+        logger.debug("debug mode : controller : 모든 사용자 조회!");
         return userService.getUsers();
     }
 
