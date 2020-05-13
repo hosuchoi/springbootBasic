@@ -24,6 +24,6 @@ public class SmartwayApplication {
 //				.sources(SmartwayApplication.class)
 //				.run(args);
 
-
+		System.out.println("test");
 	}
 }
