@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.StringUtils;
 
 import java.util.List;
 
@@ -19,8 +20,13 @@ public class UserRepositoryTests {
 
     @Test
     public void testGetUsers(){
-        List<User> users = userRepository.getUsers();
-        Assert.assertTrue( users.size() > 0);
+       String modelCode = "aaa,bbb,,cccc";
+
+        StringUtils.tokenizeToStringArray(modelCode,",");
+        String[] arrModelCode = modelCode.split(",");
+        for(String m : arrModelCode){
+            System.out.println(m);
+        }
     }
 
     @Test
