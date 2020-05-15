@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+    <!--  profile = prod 인 경우에는 debug 모드 -->
+    <springProfile name="prod">
+        <logger name="com.lake" level="DEBUG" />
+    </springProfile>
+    <!--  profile = test 인 경우에는 info 모드 -->
+    <springProfile name="test">
+        <logger name="com.lake" level="INFO" />
+    </springProfile>
+</configuration>

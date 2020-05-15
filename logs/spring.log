@@ -1,0 +1,4 @@
+2020-05-15 17:47:16.470  INFO 25688 --- [main] com.lake.smartway.logging.LoggingRunner  : ========Logging============
+2020-05-15 17:47:16.525  INFO 25688 --- [main] com.lake.smartway.logging.LoggingRunner  : profiles prod lake staudy profile 
+2020-05-15 17:47:16.527  INFO 25688 --- [main] com.lake.smartway.logging.LoggingRunner  : profiles proddb group
+2020-05-15 17:47:16.527  INFO 25688 --- [main] com.lake.smartway.logging.LoggingRunner  : ========Logging============
