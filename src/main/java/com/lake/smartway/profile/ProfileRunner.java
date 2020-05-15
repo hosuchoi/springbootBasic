@@ -26,4 +26,6 @@ public class ProfileRunner implements ApplicationRunner {
         System.out.println(classProperties.getFullName());
         System.out.println("========profile properties file==========");
     }
+//    vm : -Dfoo
+//    application : --bar --spring.profiles.active=prod
 }
