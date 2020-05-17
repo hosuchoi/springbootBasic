@@ -1,0 +1,19 @@
+1) 기본 리소스 위치
+ * classpath:/static
+ * classpath:/public
+ * classpath:/reaources
+ * classpath:/META-INF/reaources
+ * 예) "/hellt.html" => /static/hello.html 호출함
+ * spring.mvc.static-path-pattern : 맵핑 설정 변경가능
+ * spring.mvc.static.locations: 리소스 찾을위치 변경가능 (비추)
+2) Last-modified 헤더를 보고 304 응답을 보냄
+3) ResourceHttpRequestHandler가 처리함
+ * WebMvcConfigurer의 addRercourceHandlers로 커스터마이징 할 수 있음
+
+@Override
+public vod addResourceHandlers(ResourceHandlerRegistry registry){
+    registry.addResourceHandler("/m/**")
+            .addResourceLocations("classpath:/m/")
+            .setCachePeriod(20);
+}
+

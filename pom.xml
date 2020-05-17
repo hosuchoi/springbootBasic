@@ -24,19 +24,51 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!--WebFlex : 비동기 처리 호출방식 spring5부터제공 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+		<!--AOP -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
+		<!--hateoas : Link정보를 클라이언트에 넘겨줘서 다음 액션을 취할때 이용할수 있게 해줌 ( _links 정보 ) *고급RestAPI방식 -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
-
+		<!--anotation참조 및 자동완성기능-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-configuration-processor</artifactId>
 		</dependency>
+		<!--xml 메세지 컨버터 -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-xml</artifactId>
+			<version>2.11.0</version>
+		</dependency>
+		<!-- web jar : jqury   -->
+		<dependency>
+			<groupId>org.webjars.bower</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.5.1</version>
+		</dependency>
+		<!-- web jar : 버젼정보 생략 할수 있는 의존성 >> spring framework의 리소스 체이닝 기능 -->
+		<!-- <script src="/webjars/jquery/3.5.1/dist/jquery.min.js"></script>  >>  <script src="/webjars/jquery/dist/jquery.min.js"></script>   -->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>webjars-locator-core</artifactId>
+			<version>0.45</version>
+		</dependency>
+		<!-- 템플릿 엔진 : thymeleaf 의존성 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -48,6 +80,17 @@
 					<artifactId>junit-vintage-engine</artifactId>
 				</exclusion>
 			</exclusions>
+		</dependency>
+		<!-- Html Unit Test -->
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>htmlunit-driver</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>net.sourceforge.htmlunit</groupId>
+			<artifactId>htmlunit</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 		<!-- JWT -->
@@ -66,6 +109,21 @@
             <artifactId>junit</artifactId>
             <scope>test</scope>
         </dependency>
+		<dependency>
+			<groupId>org.springframework.hateoas</groupId>
+			<artifactId>spring-hateoas</artifactId>
+			<version>0.24.0.RELEASE</version>
+		</dependency>
+
+		<!--개발용 선택사항 (비추 : properties 개발용 환경만 따로 빼서 설정 추천 )-->
+<!--properties의 개발환경용 세팅( 캐시기능 false 등..) -->
+<!--소스수정시 자동 리스타트(빌드는 해야함, 비추: 잘안됨)-->
+<!-- ~/.spring-boot-devtools.properties 1순위 properties파일	-->
+<!-- remote 기능 : 원격에 application을 띄우고 개발 가능 (개발용0 -->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-devtools</artifactId>-->
+<!--		</dependency>-->
     </dependencies>
 
 	<build>

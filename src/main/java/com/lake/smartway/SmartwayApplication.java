@@ -29,9 +29,7 @@ public class SmartwayApplication {
 		WebApplicationType.NONE : 둘다 없는 경우
 		 * servelt / webflux 둘다 있으면 SERVLET이 설정됨
 		 */
-		app.setWebApplicationType(WebApplicationType.NONE);
-
-
+		app.setWebApplicationType(WebApplicationType.SERVLET);
 		app.run(args);
 
 		//빌더 사용 방식go

@@ -17,6 +17,12 @@ public class GlobalExceptionHandler {
 //        return e.getMessage();
 //    }
 
+    /*
+        Exception 우선 순위
+        1) Controller Exception : Controller 내의 ExceptionHandler를 선언한 case
+        2) Global Excpetion : @ControllerAdvice 통한 Exception class를 생성하여 선언한 case
+        3) classpath:/static/error 밑의 html : error코드.html 선언 ( 404.html, 5xx.html 등.. )
+     */
     @ExceptionHandler(value = ArithmeticException.class)
     public Map<String, String> handleArithMaticException(ArithmeticException e){
         HashMap<String, String> stringStringHashMap = new HashMap<>();
