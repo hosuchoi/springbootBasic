@@ -12,8 +12,8 @@ public class StartingEventListener implements ApplicationListener<ApplicationSta
 
     @Override
     public void onApplicationEvent(ApplicationStartingEvent applicationStartingEvent) {
-        System.out.println("=============================");
+        System.out.println("============ApplicationStartingEvent=================");
         System.out.println("Application is starting");
-        System.out.println("=============================");
+        System.out.println("============ApplicationStartingEvent=================");
     }
 }

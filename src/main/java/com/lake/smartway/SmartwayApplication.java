@@ -1,13 +1,18 @@
 package com.lake.smartway;
 
 import com.lake.smartway.applicationListener.StartingEventListener;
+import com.lake.smartway.properties.ClassProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 
-@EnableAspectJAutoProxy
+
 @SpringBootApplication
+@EnableAspectJAutoProxy
+//@EnableConfigurationProperties(ClassProperties.class)  // 자동으로 됨
 public class SmartwayApplication {
 
 	public static void main(String[] args) {
@@ -33,5 +38,6 @@ public class SmartwayApplication {
 //		new SpringApplicationBuilder()
 //				.sources(SmartwayApplication.class)
 //				.run(args);
+
 	}
 }

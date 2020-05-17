@@ -1,0 +1,39 @@
+로깅 퍼사드 vs 로거
+  * Commons Logging, SLF4j
+  * JUL, Log4J2, Logback
+spring5 로거 관련
+  * Spring-JCL
+      >> Commons Logging -> SLF4j or Log4j2
+      >> pom.xml에 Commons Logging 의존성 exclusion 안해도 됨
+SpringBoot 로깅
+  * 기본 포맷
+  * --debug(일부 핵심 라이브러리만 디버깅 모드로)
+  * --trace(전부 다 디버깅 모드로)
+  * 컬러 출력 : spring.output.ansi.enabled
+  * 파일 출력 : logging.file 또는 logging.path
+  * 로그 레벨 조정 : logging.level.패키지 = 로그레벨
+
+spring 로깅
+ >> 로깅퍼사드 (framework에서 사용, application 개발시에도 사용) : 로거들을 바꿔서 사용 할 수 있음.
+          특정 framework에서 로거를 바꿔서 사용 할 수 있도록 framework 단에서는 로깅퍼사드를 사용함
+ >> 로거 (appllication 개발시 사용)
+ >> Commons Logging : class 로딩 문제, 메모리 leak 문제 있음
+ >> SLF4J : Commons Logging 문제 해결을 위한 심플 로깅 퍼사드 포 자바라는 새로운 라이브러리, 구조적으로 쉽고 안전함
+ >> Spring Framework은 기본은 Commons Loogging을 사용 왜냐면 core단 개발시 다른건 없어서......
+ >> spring5부터는 Commons Logging -> SLF4j -> Logback을 호출함, 결국 로거를 Logback을 사용함.
+
+많은 로그를 위해서는 Configuration 설정에서 아래값 ㄱㄱ : core log (embedded container, Hibernate, spring boot)
+VM options : -Ddebug  ( 모든 로그 : --Dtrace )
+Program arguments : --debug  ( 모든 로그 : --trace )
+
+커스텀 로그 설정 파일 사용하기
+  * LogBack (추천): logback-spring.xml
+  * Log4J2 : log4j2-spring.xml
+  * JUL (비추) : logging.properties
+  * Logback extention
+        - 프로파일 <springProfile name = "프로파일">
+        - Environment 프로퍼티 <springProperty>
+로거를 Log4j2로 변경하기
+
+
+
