@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
     7) 사용자ID : user    password : 웹서버 구동시마다 새로 생김 (Using generated security password: f6fdf8b0-fd9e-40f6-8fe7-a1050823bf47)
  */
 @Controller
-public class SecuCotroller {
+public class SecurityCotroller {
 
     @GetMapping("/secu")
     public String hello(){
