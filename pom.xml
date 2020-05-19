@@ -140,6 +140,17 @@
 			<artifactId>htmlunit</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- Jackson-->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-core</artifactId>
+			<version>2.10.0.pr1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+			<version>2.9.4</version>
+		</dependency>
 
 
 		<!--개발용 선택사항 (비추 : properties 개발용 환경만 따로 빼서 설정 추천 )-->
