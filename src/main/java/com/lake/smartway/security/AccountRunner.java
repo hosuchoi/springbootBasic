@@ -21,24 +21,22 @@ public class AccountRunner implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        String authenticatedUser = "lake";
-        Optional<Account> authenUser = accountRepository.findByUsername(authenticatedUser);
-        if(!authenUser.isPresent()){
-            //인증된 유저
-            Account athenticatiedAccount = accountService.createUser(authenticatedUser, "1234");
-            logger.debug("authenticatedUser : {},  password : {}" , athenticatiedAccount.getUsername(), athenticatiedAccount.getPassword());
-        }else{
-            logger.debug("Already exist : {}", authenticatedUser);
+        String username = "lake";
+        Optional<Account> byUsername = accountRepository.findByUsername(username);
+
+        byUsername.ifPresent(account -> {logger.debug("Already exist : {}", account.getUsername());});
+        if(!byUsername.isPresent()){
+            Account userAccount = accountService.createUser(username, "1234", "ROLE_USER");
+            logger.debug("Create User : {} / {} / {} / {} ", userAccount.getId(), userAccount.getUsername(), userAccount.role, userAccount.password);
         }
 
-        String adminUer = "admin";
-        Optional<Account> adUser = accountRepository.findByUsername(adminUer);
-        if(!adUser.isPresent()){
-            //admin 유저
-            Account adminAccount = accountService.createUser(adminUer, "1234");
-            logger.debug("adminUer : {},  password : {}", adminAccount.getUsername(), adminAccount.getPassword());
-        }else{
-            logger.debug("Already exist : {}", adminUer);
+        username = "admin";
+        byUsername = accountRepository.findByUsername(username);
+
+        byUsername.ifPresent(account -> {logger.debug("Already exist : {}", account.getUsername());});
+        if(!byUsername.isPresent()){
+            Account userAccount = accountService.createUser(username, "1234", "ROLE_ADMIN");
+            logger.debug("Create User : {} / {} / {} / {} ", userAccount.getId(), userAccount.getUsername(), userAccount.role, userAccount.password);
         }
     }
 }

@@ -1,0 +1,62 @@
+[1] 개념
+    Authentication
+      - Principal과 GrantAuthority 제공.
+    Principal
+     - “누구"에 해당하는 정보.
+     -  UserDetailsService에서 리턴한 그 객체.
+     - 객체는 UserDetails 타입.
+    GrantAuthority
+     - “ROLE_USER”, “ROLE_ADMIN”등 Principal이 가지고 있는 “권한”을 나타낸다.
+     - 인증 이후, 인가 및 권한 확인할 때 이 정보를 참조한다.
+    UserDetails
+     - 애플리케이션이 가지고 있는 유저 정보와 스프링 시큐리티가 사용하는 Authentication 객체 사이의 어댑터.
+    UserDetailsService
+     - 유저 정보를 UserDetails 타입으로 가져오는 DAO (Data Access Object) 인터페이스.
+
+[2] 커스텀 시큐리티를 위한 최소 구현해야하는 기능
+    WebSecurityConfigurerAdapter
+    - Spring Security가 제공하는 SecurityAutoConfiguration 동작을 안함
+    - password 자동생성을 안해줌
+    - 특정 request에 대한 권한 설정
+    UserDetailsService
+    - Spring Security에서 User정보가 자동 생성 안됨
+    - 인증시 loadUserByUsername 메서드 자동 호출하여 DB의 유저정보 조회 후 UserDetails 객체 반환
+    - UserDetails는 커스텀한 유저정보를 담기 위한 어탭터제공(UserDetails - Principal - User(객체 사용))
+    PasswordEncoder
+    - spring에서 강요함
+
+[3] 이해하기 위한 적용 순서
+        // MVC 적용 ( thymeleaf 사용 )
+    1) AccountCotroller : controller 생성후 3개의 Getmapping 생성
+    2) Thymeleaf 의존성 추가
+    3) index(누구든), home(어드민만), mypage(어드민, 인증자) 3개를 thymeleaf로 생성(templates밑에) index page에 <a href="/home">Home</a> 두개 생성
+    4) 기본 static 패키지에 index 페이지 생성 후  http://localhost:8080 호출 -> 잘 열림 / 링크이동도 해봄
+        //시큐리티 적용
+    5) [의존성 추가] spring security
+    6) 기본 static 패키지에 index 페이지 생성 후  http://localhost:8080 호출 -> spring에서 제공해주는 login page 열림
+    7) 사용자ID : user    password : 웹서버 구동시마다 새로 생김 (Using generated security password: f6fdf8b0-fd9e-40f6-8fe7-a1050823bf47) 로그인해봄
+        // 커스텀 시큐리티 시작
+    8) [의존성 추가] JPA, H2
+    9) Account, AccountService, AccountRepository : entity,service,repository 생성
+    10) SecurityConfig -> WebSecurityConfigurerAdapter 상속받는 Bean등록해서 인증할 요청과 안할 요청 정의
+    11) SecurityUserDetailsService -> UserDetailsService 상속받는 bean을 등록해서 실제 인증및 권한 로직 추가
+    12) AccountRunner 생성 : 유저 생성을 위한 runner 생성
+    13) 실행 해봄 : encoding 관련 error 발생
+    14) SecurityUserDetailsService -> passwordEncode Bean 추가
+    15) AccountService -> 유저 생성하는곳에 password encode 로직 추가
+    15) 잘 되는지 확인
+
+[4] 스프링에서 제공하는 기본 권한(Authority)
+    ROLE_ANONYMOUS			        모든 사용자
+    IS_AUTHENTICATED_ANONYMOUSLY	익명 사용자
+    IS_AUTHENTICATED_FULLY		    인증된 사용자
+    IS_AUTHENTICATED_REMEMBERED	    REMEMBERED 사용자
+    ROLE_RESTRICTED			        제한된 사용자
+    ROLE_USER			            일반 사용자
+    ROLE_ADMIN			            관리자
+
+
+compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
+implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+implementation 'org.springframework.boot:spring-boot-starter-security'
+runtimeOnly 'com.h2database:h2'

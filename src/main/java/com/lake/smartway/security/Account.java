@@ -14,6 +14,8 @@ public class Account {
 
     String password;
 
+    String role;
+
     public int getId() {
         return id;
     }
@@ -32,6 +34,14 @@ public class Account {
 
     public String getPassword() {
         return password;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public void setPassword(String password) {

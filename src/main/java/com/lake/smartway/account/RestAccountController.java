@@ -12,9 +12,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/restController")
-public class AccountController {
+public class RestAccountController {
     
-    private final Logger logger = LoggerFactory.getLogger(AccountController.class);
+    private final Logger logger = LoggerFactory.getLogger(RestAccountController.class);
 
     @GetMapping("/string")
     public String getUrl(){
