@@ -1,6 +1,8 @@
 package com.lake.smartway.dao;
 
 import com.lake.smartway.model.User;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
@@ -8,8 +10,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 @Repository
 public class UserRepository {
+    Logger logger = LoggerFactory.getLogger(UserRepository.class);
 
     public static List<User> users;
     static {
@@ -23,12 +27,12 @@ public class UserRepository {
     }
 
     public List<User> getUsers() {
-        System.out.println("all users!!");
+        logger.debug("all users!!");
         return users;
     }
 
     public User getUserByuserId(Integer userId) {
-        System.out.println("User by userId!!");
+        logger.debug("User by userId!!");
 
         return users.stream()
                 .filter(user -> user.getUserId().equals(userId))

@@ -15,8 +15,10 @@ public class SliceTestController {
 
     @GetMapping("/helloSlice")
     public String hello() throws Exception{
-        logger.info("lakeman");
-        System.out.println("skip");
+        logger.debug("========SliceTestController===========");
+        logger.debug("lakeman");
+        logger.debug("skip");
+        logger.debug("=====================================");
 
         return "hello " + sampleService.getName();
     }

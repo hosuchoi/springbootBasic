@@ -20,6 +20,6 @@ public class LoggingRunner implements ApplicationRunner {
         logger.debug("========Logging============");
         logger.debug(classProperties.getName());
         logger.debug(classProperties.getFullName());
-        logger.debug("========Logging============");
+        logger.debug("===========================");
     }
 }

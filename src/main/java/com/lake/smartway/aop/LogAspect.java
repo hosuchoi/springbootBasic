@@ -69,18 +69,22 @@ public class LogAspect {
     //UserService의 모든 메서드
 //    @Around("Bean(UserService)")
 //    @Before("@annotation(tokenRequired")
-    @Around("execution(* com.example.smartway.service.UserService..*(..))")
+    @Around("execution(* com.lake.smartway.service.UserService..*(..))")
     public Object logging(ProceedingJoinPoint pjp) throws Throwable {
-        logger.info("AOP around start - " + pjp.getSignature().getDeclaringTypeName() + " / " + pjp.getSignature().getName());
+        logger.debug("===================AOP AROUND com.example.smartway.service.UserService..*(..)=================");
+        logger.debug("AOP around start - " + pjp.getSignature().getDeclaringTypeName() + " / " + pjp.getSignature().getName());
         Object result = pjp.proceed();
-        logger.info("AOP around finished - " + pjp.getSignature().getDeclaringTypeName() + "/" + pjp.getSignature().getDeclaringTypeName());
+        logger.debug("AOP around finished - " + pjp.getSignature().getDeclaringTypeName() + "/" + pjp.getSignature().getDeclaringTypeName());
+        logger.debug("===============================================================================================");
 
         return result;
     }
 
     @Before("bean(UserService)")
     public void logger() throws Throwable {
-        System.out.println("AOP Before");
+        logger.debug("===================AOP Before bean(UserService)=================");
+        logger.debug("AOP Before");
+        logger.debug("================================================================");
     }
 
 }

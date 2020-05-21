@@ -1,5 +1,8 @@
 package com.lake.smartway.properties;
 
+import io.jsonwebtoken.lang.Strings;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
@@ -8,6 +11,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DirectProperties implements ApplicationRunner {
+    Logger logger = LoggerFactory.getLogger(DirectProperties.class);
 
     /*
     application.properties 우선 순위 ( 높은게 낮은걸 덮어씀 )
@@ -35,18 +39,18 @@ public class DirectProperties implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        System.out.println("=======direct properties============");
-        System.out.println(name);
-        System.out.println(fullName);
-        System.out.println(radomValue);
-        System.out.println("=======direct properties============");
+        logger.debug("=======direct properties============");
+        logger.debug(name);
+        logger.debug(fullName);
+        logger.debug(Integer.toString(radomValue));
+        logger.debug("=====================================");
 
-        System.out.println("=======Class properties============");
-        System.out.println(classProperties.getName());
-        System.out.println(classProperties.getFullName());
-        System.out.println(classProperties.getRandomValue());
-        System.out.println(classProperties.getSessionTimeout()); //springboot의 duration이라는 특이한 컨버터 타입 ( application.properties에서는 문자열로 입력했지만 -> duration으로 변환 )
-        System.out.println("=======Class properties============");
+        logger.debug("=======Class properties============");
+        logger.debug(classProperties.getName());
+        logger.debug(classProperties.getFullName());
+        logger.debug(Integer.toString(classProperties.getRandomValue()));
+        logger.debug(classProperties.getSessionTimeout()+""); //springboot의 duration이라는 특이한 컨버터 타입 ( application.properties에서는 문자열로 입력했지만 -> duration으로 변환 )
+        logger.debug("=====================================");
     }
 
 
