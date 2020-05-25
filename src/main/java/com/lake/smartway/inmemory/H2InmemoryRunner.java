@@ -17,7 +17,7 @@ import java.sql.Statement;
 spring.h2.console.enabled=true
  */
 
-@Component
+//@Component
 public class H2InmemoryRunner implements ApplicationRunner {
 
     Logger logger = LoggerFactory.getLogger(H2InmemoryRunner.class);

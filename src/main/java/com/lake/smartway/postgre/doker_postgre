@@ -1,0 +1,46 @@
+docker version  : 도커 버젼 (클라이언트 / 서버)
+docker --help   : 도커 단축키 도움말
+docker run hello-world : 잘깔렷는지 테스트
+
+#실행중인 컨테이너 확인
+docker ps
+
+#실행햇었던 실행중인 컨테이너 모두 확인
+docker ps -a
+
+#postgre 생성
+docker run -p 5432:5432 -e POSTGRES_PASSWORD=zxasqw12 -e POSTGRES_USER=lake -e POSTGRES_DB=springboot --name postgres_boot -d postgres
+
+#실행중인 컨테이너 안에 들어가기
+docker exec -i -t postgres_boot bash
+
+#돌고있는지 확인
+ps ax | grep postgres
+
+#postgres 유저로 접근하는 방법
+#유저를 postgres로 변경
+su - postgres
+
+#접근할 데이터 베이스로 이동
+psql springboot
+#생성시 넣엇던 사용자로 데이터베이스로 들어가는 방법
+psql --usernmae=lake --dbname=springboot
+
+#데이터베이스 목록 조회
+\l
+\list
+
+#테이블 조회시
+\dt
+
+#컨테이너 빠져나오기
+\q
+exit
+
+#컨테이너 중지
+docker stop postgres_boot
+
+#컨테이너 삭제
+#docker rm postgres_boot
+
+
