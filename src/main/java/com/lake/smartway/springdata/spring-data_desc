@@ -1,0 +1,22 @@
+
+스프링 데이터 정리
+https://docs.spring.io/spring-boot/docs/current-SNAPSHOT/reference/htmlsingle/#boot-features-sql
+
+sql 데이터베이스 지원
+- jdbc template
+- datasource 설정방법
+- 인베디드 데이스 - h2 db
+
+production db
+- HikariCP : data connection fool 사용
+- datasource - mysql, postgre (Docker 사용)
+
+JNDI는 생략
+
+JPA 사용법
+ - 매핑
+ - jparepository 상속받는게 좋은 더 기능이 많음
+ - spring.data.hibernate. 관련 옵션들
+
+
+

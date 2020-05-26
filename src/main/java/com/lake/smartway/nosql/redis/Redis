@@ -1,0 +1,29 @@
+Redis : 캐시, 메시지 브로커, 키/밸류 스토어 등으로 사용 가능
+
+의존성 추가
+ - spring-boot-start-data-redis
+
+Redis 설치 및 실행 (도커)
+ - docker run -p 6379:6379 --name redis_boot -d redis ( -d 데몬 )
+ - docker exec -i -t redis_boot redis-cli  ( -i 인터렉티비 -t 타겟 )
+
+스프링 데이터 Redis
+ - https://projects.spring.io/spring-data-redis/
+
+사용하는 두가지 방법
+ - StringRedisTemplate 또는 RedisTemplate  -> String에 특화되어 있음
+     - keys * : 모든 키확인
+     - get {key} : 특정 키의 값 확인
+ - CrudRepositry  -> Redis의 Hash를 사용해서 저장하는 방식 -> JPA Repository를 사용하듯이 Repository로 만들어서 사용 가능
+     - hget {key} {column} : hash get하는법임 ( ex - hget acounts:ndver21r-f342r-3r2few-re23fe eamil )
+     - hgetall {key} : 해당 Key에 있는 모든 hash 정보값 가져옴 ( ex - hget acounts:ndver21r-f342r-3r2few-re23fe )
+
+Redis 주요 커맨드
+ - https://redis.io/commands
+
+Redis에서 아무 설정 없이 사용할 수 있었던 이유는 redis docker의 port를 6379로 설정해서 가능 ( springboot에서는 6379 default로 설정 )
+
+커스터마이징
+ - spring.redis.* 의 properties 설정을 바꾸면됨
+
+

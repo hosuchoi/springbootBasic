@@ -1,0 +1,30 @@
+MongoDB
+- Json 기반의 Document데이터 베이스라서 스키마가 없음
+- Redis 사용법과 비슷함
+- Docker를 사용해서 컨테이너구성
+
+의존성 추가
+ - spring-boot-starter-data-mongodb
+
+MongoDB 설치 및 실행 (Docker)
+ - docker run -p 27017:27017 --name mongo_boot -d -mongo ( Mongo db 컨테이너 생성 )
+ - docker exec -i -t mogno_boot bash  ( Mongo db 컨테이너 입장 )
+ - mongo ( Mongo shell 안으로 입장~ )
+
+Mongo 문법
+ - db : db 확인
+ - ues {db명} : 특정 db로 변경
+ - db.{document명}.find({}) :  특정 collecion에 데이터 확인
+
+사용하는 2가지 방법
+- MongoTemplate
+- MongoRepository
+
+내장형 MongoDB (테스트용) : de.flapdoodle.embed:de.flapdoodle.embed.mongo
+- 의존성 추가
+
+스프링 데이터 Mongo DB
+ - @DataMongo Test
+
+커스터마이징
+ - spring.mongodb.* 의 properties 설정을 바꾸면됨

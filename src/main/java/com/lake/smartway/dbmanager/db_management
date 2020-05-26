@@ -1,0 +1,19 @@
+Flyway / liquibase가 대표 마이그레이션 툴, db 관리
+
+Flyway
+- sql 파일 사용
+- 의존성 추가 ( org.flywaydb , flyway-core)
+- db.migration 또는 db.migration.${vendor}
+- V숫자__이름.slq ( V1_init.sql ) V는 대문자로
+- 숫자는 순차적으로 (타임스탬프 권장)
+- 숫자와 이름사이에는 언더바 2개
+- 이름은 가능한 서술적으로
+
+.sql 규칙  (이력 관리를 위해서 )
+- 한번 만들어서 실행한 파일은 절대 수정하면 안됨
+- 칼럼 추가및 변경시 새로운 파일을 만들어서 저장
+
+전체적인 그림
+- 서버 시작
+- 서버가 시작되면서 flyway를 통해서 .sql 파일들을 읽어서 스키마를 생성한다
+- 그후 hibernate가 validation을 하면서 스키마 적합성을 체크한다. (spring.jpa.hibernate.ddl-auto = validate 설정)

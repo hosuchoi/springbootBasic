@@ -2,12 +2,19 @@ package com.lake.smartway;
 
 import com.lake.smartway.applicationListener.StartingEventListener;
 import com.lake.smartway.properties.ClassProperties;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.client.RestTemplateCustomizer;
+import org.springframework.boot.web.reactive.function.client.WebClientCustomizer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 
 @SpringBootApplication
@@ -33,9 +40,42 @@ public class SmartwayApplication {
 		app.run(args);
 
 		//빌더 사용 방식go
-//		new SpringApplicationBuilder()
+//		new SpringApplicgitationBuilder()
 //				.sources(SmartwayApplication.class)
 //				.run(args);
 
 	}
+
+//	@Bean
+//	public ApplicationRunner applicationRunner(){
+//		return new ApplicationRunner() {
+//			@Override
+//			public void run(ApplicationArguments args) throws Exception {
+//
+//			}
+//		};
+//	}
+
+//	//모든 web client 빌더는 아래의 custome된 객체를 사용해서 씀 (RestClientRunner.java 참조)
+//	@Bean
+//	public WebClientCustomizer webClientCustomizer(){
+//		return  new WebClientCustomizer() {
+//			@Override
+//			public void customize(WebClient.Builder webClientBuilder) {
+//				webClientBuilder.baseUrl("http://localhost:8080");
+//			}
+//		};
+//	}
+//
+//	//RestTemplate 커스텀 (의존성 추가 필요)
+//	@Bean
+//	public RestTemplateCustomizer restTemplateCustomizer(){
+//		return new RestTemplateCustomizer() {
+//			@Override
+//			public void customize(RestTemplate restTemplate) {
+//				//아파치 http client 사용 ( 이제 java net http 사용 안함. )
+//				restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
+//			}
+//		};
+//	}
 }

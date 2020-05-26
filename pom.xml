@@ -112,10 +112,10 @@
 			<scope>runtime</scope>
 		</dependency>
 		<!-- postgre -->
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.postgresql</groupId>-->
+<!--			<artifactId>postgresql</artifactId>-->
+<!--		</dependency>-->
 
 		<!-- boot Test -->
 		<dependency>
@@ -162,7 +162,38 @@
 			<artifactId>jackson-annotations</artifactId>
 			<version>2.9.4</version>
 		</dependency>
+		<!--flywaydb 마이그레이션 db 설정-->
+<!--		<dependency>-->
+<!--			<groupId>org.flywaydb</groupId>-->
+<!--			<artifactId>flyway-core</artifactId>-->
+<!--		</dependency>-->
+		<!-- Redis -->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-data-redis</artifactId>-->
+<!--		</dependency>-->
+		<!-- Mongo DB -->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-data-mongodb</artifactId>-->
+<!--		</dependency>-->
+		<!-- Mongo DB 내장형 ( TEST 전용 ) -->
+<!--		<dependency>-->
+<!--			<groupId>de.flapdoodle.embed</groupId>-->
+<!--			<artifactId>de.flapdoodle.embed.mongo</artifactId>-->
+<!--			<scope>test</scope>-->
+<!--		</dependency>-->
+		<!-- Neo4j --> <!-- 하위 호환성이 안좋음.... 버젼 확인 필요 -->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-data-neo4j</artifactId>-->
+<!--		</dependency>-->
 
+		<!-- RestClient 커스텀 (SmartwayApplication.java 참조)-->
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+		</dependency>
 
 		<!--개발용 선택사항 (비추 : properties 개발용 환경만 따로 빼서 설정 추천 )-->
 		<!--properties의 개발환경용 세팅( 캐시기능 false 등..) -->

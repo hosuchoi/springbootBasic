@@ -2,8 +2,8 @@ package com.lake.smartway.designPatten;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class SingleTone {
-    private SingleTone() {}
+public class Singleton {
+    private Singleton() {}
 
     public static ObjectMapper getInstance() {
         return Mapper.INSTANCE;
