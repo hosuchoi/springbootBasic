@@ -2,6 +2,7 @@ package com.lake.smartway;
 
 import com.lake.smartway.applicationListener.StartingEventListener;
 import com.lake.smartway.properties.ClassProperties;
+import de.codecentric.boot.admin.server.config.EnableAdminServer;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
@@ -19,6 +20,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @SpringBootApplication
 @EnableAspectJAutoProxy
+@EnableAdminServer // Actuator : Springboot boot admin
 //@EnableConfigurationProperties(ClassProperties.class)  // 자동으로 됨
 public class SmartwayApplication {
 

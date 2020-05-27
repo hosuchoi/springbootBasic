@@ -1,11 +1,14 @@
 package com.lake.smartway.security;
 
+import de.codecentric.boot.admin.server.config.AdminServerProperties;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.header.writers.StaticHeadersWriter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
@@ -19,6 +22,12 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+//    private final AdminServerProperties adminServer;
+//
+//    public SecurityConfig(AdminServerProperties adminServer) {
+//        this.adminServer = adminServer;
+//    }
+    
     //Web Server ( 정적 컨텐츠 : html,css,js등...) 들어올때 인증 처리 (여기 webserver는 tomcat)
     @Override
     public void configure(WebSecurity web) throws Exception {
@@ -29,8 +38,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     // WAS ( 동적 컨테츠 ( 로직처리, cud 등등...) 사용하는곳 -> Spring boot 로직 서버
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+//        String adminContextPath = this.adminServer.getContextPath();
+//        SavedRequestAwareAuthenticationSuccessHandler successHandler = new SavedRequestAwareAuthenticationSuccessHandler();
+//        successHandler.setTargetUrlParameter(“redirectTo”);
+
         http.authorizeRequests() //요청에 대한 인증 처리
                 .antMatchers("/h2-console/**").permitAll() // H2에 대한 인증 면제 ( antMatchers : ANT 방식 )
+//                .mvcMatchers("/actuator/**").hasRole("ADMIN") // spring boot admin 운영 면제
                 .mvcMatchers("/secuIndex","/cors").permitAll() // 인증 면제
                 .mvcMatchers("/admin").hasRole("ADMIN")  // ROLE_ADMIN 역할만 허용 (자동생성 : "ROLE_")
                 .anyRequest().authenticated() // 그외 요청은 모두 인증 필요
@@ -47,6 +61,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .formLogin() // form 로그인을 사용 : (my(인증정보없는경우)는 왜 form 로그인에 걸리지? accept header에 html에 있는 경우 여기에 걸림 그외는 아래의 httpBasic)
                 .and()
                 .httpBasic(); // httpBasicAuthentication 을 사용 : HTTP 기본 인증 프로토컬 (200 정상 404 디렉토리x 500 내부소스 401 인증실패등..)
+
+/*
+
+        http.authorizeRequests()
+                .antMatchers(adminContextPath + "/assets/**").permitAll()
+                .antMatchers(adminContextPath + "/login").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin().loginPage(adminContextPath + "/login").successHandler(successHandler).and()
+                .logout().logoutUrl(adminContextPath + "/logout").and()
+                .httpBasic().and()
+                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                .ignoringAntMatchers(
+                        adminContextPath + "/instances",
+                        adminContextPath + "/actuator/**"
+                );
+ */
     }
 }
 

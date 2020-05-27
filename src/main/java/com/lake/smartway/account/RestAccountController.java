@@ -20,7 +20,8 @@ public class RestAccountController {
     public String getUrl(){
         return "hello world";
     }
-//    http://localhost:8080/restController/account/?id=userId&pwd=userpwd
+
+    // http://localhost:8080/restController/account/?id=userId&pwd=userpwd
 //    @GetMapping("/account")
 //    public AccountDVO getAccount(@RequestParam(value = "id", required = false, defaultValue = "default id") String id,
 //                                    @RequestParam(value = "pwd", required = false, defaultValue = "default pwd") String pwd){
@@ -31,7 +32,7 @@ public class RestAccountController {
 //        return accountDVO;
 //    }
 
-//    http://localhost:8080/restController/account/userId/userpwd
+    //http://localhost:8080/restController/account/userId/userpwd
 //    @GetMapping("/account/{id}/{pwd}")
 //    public AccountDVO getAccount(@PathVariable(name = "id") String id,
 //                                 @PathVariable(name = "pwd") String pwd){
@@ -70,6 +71,6 @@ public class RestAccountController {
         accountArrayList.add(accountDVOs);
         accountArrayList.add(accountDVO1);
 
-        return new ResponseEntity<>(accountArrayList, HttpStatus.OK);
+        return new ResponseEntity<List<AccountDVO>>(accountArrayList, HttpStatus.OK);
     }
 }
