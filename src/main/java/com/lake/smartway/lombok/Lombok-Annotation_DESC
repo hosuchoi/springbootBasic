@@ -1,0 +1,156 @@
+@Getter, @Setter  : 자바 POJO 형식에 맞게 필드의 Setter나 Getter를 만든다.
+	                클래스에 선언하면 필드 모두에 적용되고,
+	                어노테이션의 파라미터로 AccessLevel을 이용해 Setter / Getter의 접근제한자를 설정할 수 있다.
+	                ex) @Setter(AccessLevel.PRIVATE)
+
+	                private final로 선언된 필드는 @Getter의 파라미터 중 lazy를 true로 설정할 수 있는데,
+                    lazy를 true로 설정할 경우 해당 필드의 getter가 호출 될 때 필드의 값을 설정한다.
+	                ex) @Getter(lazy = true)
+	                    private final String name = defaultName();
+
+@ToString : 클래스의 toString() 메소드를 오버라이드한다.
+	        @ToString 어노테이션의 파라미터 exclude로 출력하지 않을 필드명을 입력할 수 있고,
+	        includeFieldNames로 필드명을 생략할지 포함할지 여부,
+	        callSuper로 상위 클래스의 toString()을 호출할지 여부를 설정할 수 있다.
+	        ex) @ToString(exclude = {"value", "value2"})
+
+@EqualsAndHashCode : equlas와 hashcode 메소드를 만들어 준다.
+  		             equals     : 두 객체의 내용이 같은지, 동등성(equality) 를 비교하는 연산자
+                     hashCode : 두 객체가 같은 객체인지, 동일성(identity) 를 비교하는 연산자
+
+@NoArgsConstructor : 파라미터를 받지 않는 기본 생성자를 만들어 줍니다.
+
+@RequiredArgsConstructor : final이나 @NonNull 인 필드 값만 파라미터로 받는 생성자를 만들어 준다.
+
+@AllArgsConstructor : 모든 필드 값을 파라미터로 받는 생성자를 만들어 준다.
+
+@Data : 클래스안의 모든 private 필드에 대해 @Getter와 @Setter를 적용하여 세터/게터를 만들어주고
+        클래스내에 @ToString 과 @EqualsAndHashCode를 적용시켜 메소드를 오버라이드 해주며
+        @RequiredArgsConstructor를 지정해 준다.
+
+@Delegate : 한 클래스에 다른 클래스의 메소드를 위임.
+	        ex) @Delegate(types=List.class)
+	            private final List<string> names = new ArrayList<string>();
+
+@Value : 불변의 클래스!!
+         기본적으로 위와 같이 선언했을 경우 필드는 기본적으로 private 접근제어자와 final 이 붙은 상수가 된다.
+         final이 붙어 setter는 존재하지 않고 getter만 존재한다. 클래스 자체도 final class로 상속을 받을 수 없다.
+         @Data 어노테이션과 비슷하게 equals, hashCode, toString을 함께 만들어 준다.
+         @Data 어노테이션이 비슷하지만 불변인 정도? 그 정도로만 생각해도 문제없을 듯 하다.
+         기본 생성자는 private 생성자이다.  기본생성자는 만들어 주지만 private 생성자로 만들어 준다.
+         ex) @Value
+             public class ValueExample {
+                 String name;
+                 String email;
+             }
+   ***** org.springframework.beans.factory.annotation.Value; 의 @Value와 헷갈리지 말것 ( 얘는 properties 읽어오는 어노테이션 )
+
+@Builder : 빌더 패턴을 사 용할 수 있도록 코드를 생성합니다.
+
+                    ex) @Builder를 안쓴 예제
+                    public class User {
+                      private String name;
+                      private int age;
+
+                      public static UserBuilder builder() {
+                        return new UserBuilder();
+                      }
+
+                      public String getName() {
+                        return name;
+                      }
+                    }
+
+                    //Builder Class
+                    public class UserBuilder {
+                      private String name;
+                      private int age;
+
+                      public User build() {
+                        User user = new User();
+                        user.setName(this.name);
+                        user.setAge(this.age);
+                        return user;
+                      }
+
+                      public UserBuilder name(String name) {
+                        this.name = name;
+                        return this;
+                      }
+
+                      public UserBuilder age(int age) {
+                        this.age = age;
+                        return this;
+                      }
+                    }
+
+                    @Data
+                    @Builder
+                    public class User {
+                      private String name;
+                      private int age;
+                    }
+
+                    public class UserBuilderTest {
+                      @Test  public void builderTest() {
+                        User user = User.builder()
+                                      .name("홍길동")
+                                      .build();
+                        System.out.println(user);
+                      }
+                    }
+
+
+@SneakyThrows : 예외 발생 시 Throwable 타입으로 반환합니다.
+                메소드 선언부에 사용되는 throws 키워드 대신 사용하는 어노테이션으로 예외 클래스를 파라미터로 입력받는다.
+                Checked Exception 때문에 반드시 throws나 try-catch 구문을 통해서 번거롭게 명시적으로 예외 처리를 해줘야할 때가 있습니다.
+                이럴 때, @SneakyThrows 어노테이션을 사용하면 명시적인 예외 처리를 생략할 수 있습니다. (호불호가 갈릴 수 있는 기능인 것 같습니다.)
+                ex) @SneakyThrows(IOException.class)
+                    public void printLines() {
+                        BufferedReader reader = new BufferedReader(...);
+                        for (String line; (line = reader.readLine()) != null; ) {
+                            System.out.println(line);
+                        }
+                    }
+
+@Syncronized : 메소드에서 동기화를 설정합니다.
+               자바의 synchronized 키워드를 메소드에 선언하면 객체 레벨에서 락이 걸려서 여러가지 동기화 관련 문제들이 발생할 수 있습니다.
+               대신에 @Synchronized 어노테이션을 사용하면 가상의 필드 레벨에서 좀 더 안전하게 락을 걸어줍니다.
+               ex) @Synchronized
+                   public void hello() {
+                       System.out.println("world");
+                   }
+
+@Cleanup	자동으로 close() 메소드를 호출합니다.
+		    try-with-resource 구문과 비슷한 효과를 가진다.
+		    구문이 종료될 때 AutoCloseable 인터페이스의 close()가 호출되는
+		    try-with-resource와 달리 Scope가 종료될 때 close()가 호출된다.
+		    ex) public static void getAndPrint() {
+                  @Cleanup val scanner = new Scanner(System.in);
+                  val value = scanner.nextLine();
+                  System.out.println(value);
+                }
+
+@NonNull : 메소드의 파라미터에 사용되고, null이 파라미터로 전달되면 예외을 던진다
+           ex) @NonNull
+               private String id;
+
+@Log : 로거 자동 생성
+       클래스마다 일일이 로거를 생성해주는 여간 귀찮은 일이 아닙니다.
+       이 때, @Log 어노테이션을 사용하면 자동으로 log 필드를 만들고,
+       해당 클래스의 이름으로 로거 객체를 생성하여 할당해줍니다.
+       @Log 뿐만 아니라, @Slf4j나 @Log4j2 등 다양한 로깅 프레임워크에 대응하는 어노테이션을 제공하오니 참고바랍니다.
+       ex) @Log
+           public class LogExample {
+             // 자동 생성
+             // private static final java.util.logging.Logger log = java.util.logging.Logger.getLogger(LogExample.class.getName());
+             public static void main(String... args) {
+               log.info("TEST");
+             }
+           }
+     ** @Slf4j 추천
+
+
+val : 로컬변수에 사용되며 final을 사용한것과 비슷한 효과를 내며
+      형식을 자동유추하여 타입을 따로 쓰지 않고 변수를 선언할 수 있다.
+var:  var는 변수에 final 키워드가 적용되지 않는다는 점을 제외하면 정확히 val과 같습니다.
