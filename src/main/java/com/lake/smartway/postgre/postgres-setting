@@ -1,0 +1,12 @@
+<!-- postgre -->
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+</dependency>
+
+# postgre datasource properties
+#spring.datasource.url=jdbc:postgresql://localhost:5432/springboot
+#spring.datasource.username = lake
+#spring.datasource.password = zxasqw12
+# org.postgresql.jdbc.PgConnection.createClob() is not yet implemented 관련 에러 없애는 법
+#spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true

@@ -42,5 +42,3 @@ docker stop postgres_boot
 
 #컨테이너 삭제
 #docker rm postgres_boot
-
-
