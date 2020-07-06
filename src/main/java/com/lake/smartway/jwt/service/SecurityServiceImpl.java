@@ -23,7 +23,7 @@ public class SecurityServiceImpl implements SecurityService {
     public String createToken(String subject, long ttlmillits) {
 
         if(ttlmillits == 0){
-            throw new RuntimeException("해당 토큰이 만료되었습니다.");
+            throw new RuntimeException("Expiry time must be greater than zero");
         }
 
         //H256 암호화 방식
@@ -32,7 +32,7 @@ public class SecurityServiceImpl implements SecurityService {
         byte[] apiKeySecretBytes = DatatypeConverter.parseBase64Binary(secretKey);
         //H256 암호화 방식과 시큐리티키를 이용한 signing key 생성
         SecretKeySpec signingKey = new SecretKeySpec(apiKeySecretBytes, signatureAlgorithm.getJcaName());
-        //JWT 빌더 패턴을 통해서 토큰 생성
+        //JWT 빌더 패턴을 통해서 토큰 객체생성
         JwtBuilder jwtBuilder = Jwts.builder()
                 .setSubject(subject)
                 .claim("userId","lake")
@@ -41,7 +41,7 @@ public class SecurityServiceImpl implements SecurityService {
         long nowMillis = System.currentTimeMillis();
         jwtBuilder.setExpiration(new Date(nowMillis + ttlmillits));
 
-        return jwtBuilder.compact();
+        return jwtBuilder.compact(); // token 생성
     }
 
     /**

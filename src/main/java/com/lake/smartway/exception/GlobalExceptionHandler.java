@@ -1,8 +1,11 @@
 package com.lake.smartway.exception;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpStatusCodeException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,11 +14,11 @@ import java.util.Map;
 @RestController //전역 예외처리는 controller의 중 하나이다
 public class GlobalExceptionHandler {
 
-//    @ResponseStatus(HttpStatus.BAD_REQUEST)
-//    @ExceptionHandler(value = BaseException.class)
-//    public String handleBaseException(BaseException e){
-//        return e.getMessage();
-//    }
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(value = HttpStatusCodeException.class)
+    public String handleBaseException(HttpStatusCodeException e){
+        return e.getMessage();
+    }
 
     /*
         Exception 우선 순위
