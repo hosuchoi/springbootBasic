@@ -1,4 +1,4 @@
-package com.lake.smartway.dao;
+package com.lake.smartway.jwt.dao;
 
 import com.lake.smartway.model.User;
 import org.slf4j.Logger;

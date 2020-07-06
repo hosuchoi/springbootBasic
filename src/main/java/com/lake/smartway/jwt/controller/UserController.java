@@ -1,4 +1,4 @@
-package com.lake.smartway.controller;
+package com.lake.smartway.jwt.controller;
 
 import com.lake.smartway.aop.TokenRequired;
 import com.lake.smartway.model.User;

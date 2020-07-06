@@ -1,7 +1,6 @@
-package com.lake.smartway.controller;
+package com.lake.smartway.jwt.controller;
 
-import com.lake.smartway.service.SecurityService;
-import com.lake.smartway.service.SecurityServiceImpl;
+import com.lake.smartway.jwt.service.SecurityService;
 import com.lake.smartway.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

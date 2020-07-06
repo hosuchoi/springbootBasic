@@ -1,5 +1,6 @@
-package com.lake.smartway.service;
+package com.lake.smartway.jwt.service;
 
+import com.lake.smartway.jwt.service.SecurityService;
 import io.jsonwebtoken.*;
 import org.springframework.stereotype.Service;
 
@@ -8,9 +9,9 @@ import javax.xml.bind.DatatypeConverter;
 import java.util.Date;
 
 @Service
-public class SecurityServiceImpl implements SecurityService{
+public class SecurityServiceImpl implements SecurityService {
 
-    private final static String secretKey = "d2143njefn12l3nkflednj213nnkndfn";
+    private final static String secretKey = "Z21lczIw";
 
     /**
      * JWT 토큰 생성 ( 최초 생성 )
@@ -34,6 +35,7 @@ public class SecurityServiceImpl implements SecurityService{
         //JWT 빌더 패턴을 통해서 토큰 생성
         JwtBuilder jwtBuilder = Jwts.builder()
                 .setSubject(subject)
+                .claim("userId","lake")
                 .signWith(signatureAlgorithm, signingKey);
         //만료기간 생성
         long nowMillis = System.currentTimeMillis();
@@ -54,6 +56,9 @@ public class SecurityServiceImpl implements SecurityService{
                 .setSigningKey(DatatypeConverter.parseBase64Binary(secretKey))
                 .parseClaimsJws(token)
                 .getBody();
+
+        String subject = claims.getSubject();
+        String userId = claims.get("userId").toString();
 
         return claims.getSubject();
     }

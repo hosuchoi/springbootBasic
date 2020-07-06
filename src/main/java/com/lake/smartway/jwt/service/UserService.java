@@ -1,6 +1,6 @@
 package com.lake.smartway.service;
 
-import com.lake.smartway.dao.UserRepository;
+import com.lake.smartway.jwt.dao.UserRepository;
 import com.lake.smartway.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
