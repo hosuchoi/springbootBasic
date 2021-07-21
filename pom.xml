@@ -201,7 +201,7 @@
 			<version>2.1.4</version>
 		</dependency>
 
-		<!--개발용 선택사항 (비추 : properties 개발용 환경만 따로 빼서 설정 추천 )-->
+		<!--개발용 선택사항 (비추 : properties 개발용 환경만 따로 빼서 설정 추천 ) -->
 		<!--properties의 개발환경용 세팅( 캐시기능 false 등..) -->
 		<!--소스수정시 자동 리스타트(빌드는 해야함, 비추: 잘안됨)-->
 		<!-- ~/.spring-boot-devtools.properties 1순위 properties파일	-->
