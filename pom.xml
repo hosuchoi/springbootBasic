@@ -42,7 +42,7 @@
 		<dependency>
 			<groupId>org.springframework.hateoas</groupId>
 			<artifactId>spring-hateoas</artifactId>
-			<version>0.25.0.RELEASE</version>
+			<version>1.5.5</version>
 		</dependency>
 		<!--anotation참조 및 자동완성기능-->
 		<dependency>
